@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raizo Reader - Smart Document & Text Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <!-- PDF.js Library for reading PDF files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+</head>
+<body class="dark-theme">
+    <header class="app-header">
+        <div class="logo">
+            <span class="logo-icon">📖</span>
+            <h1>Raizo Reader</h1>
+        </div>
+        <div class="header-controls">
+            <button id="theme-toggle" class="btn-icon" title="থিম পরিবর্তন করুন">🌙</button>
+            <label for="file-upload" class="btn-upload">📂 ফাইল খুলুন (PDF/TXT)</label>
+            <input type="file" id="file-upload" accept=".txt,.pdf" hidden>
+        </div>
+    </header>
+
+    <main class="reader-container">
+        <!-- Control Panel -->
+        <section class="control-bar">
+            <div class="font-controls">
+                <button id="font-decrease" class="btn-sm" title="লেখা ছোট করুন">A-</button>
+                <span id="font-size-val">18px</span>
+                <button id="font-increase" class="btn-sm" title="লেখা বড় করুন">A+</button>
+            </div>
+
+            <div class="tts-controls">
+                <select id="voice-select" class="voice-dropdown">
+                    <option value="">ভয়েস লোড হচ্ছে...</option>
+                </select>
+                <div class="speed-control">
+                    <label for="rate-slider">গতি:</label>
+                    <input type="range" id="rate-slider" min="0.5" max="2" value="1" step="0.1">
+                    <span id="rate-val">1.0x</span>
+                </div>
+                <button id="btn-play" class="btn-action play">▶ শুনুন</button>
+                <button id="btn-pause" class="btn-action pause">⏸ বিরতি</button>
+                <button id="btn-stop" class="btn-action stop">⏹ বন্ধ</button>
+            </div>
+        </section>
+
+        <!-- Status & Progress -->
+        <div id="status-bar" class="status-bar">প্রস্তুত। নিচে টেক্সট পেস্ট করুন অথবা PDF/TXT ফাইল আপলোড করুন।</div>
+
+        <!-- Reading Area -->
+        <section class="reading-area-wrapper">
+            <textarea id="text-input" placeholder="এখানে আপনার যেকোনো লেখা পেস্ট করুন, অথবা ওপরের 'ফাইল খুলুন' বাটনে ক্লিক করে যেকোনো PDF বা TXT বই ওপেন করুন..."></textarea>
+        </section>
+
+        <!-- Bottom Info Bar -->
+        <footer class="reader-footer">
+            <div class="stats">
+                <span id="word-count">শব্দ: ০</span> | 
+                <span id="char-count">অক্ষর: ০</span>
+            </div>
+            <div class="actions">
+                <button id="btn-save" class="btn-secondary">💾 লেখা সেভ রাখুন</button>
+                <button id="btn-clear" class="btn-danger">🗑️ মুছে ফেলুন</button>
+            </div>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
